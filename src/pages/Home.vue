@@ -165,8 +165,7 @@ export default {
         name: "",
         phone: "",
         desc: "",
-        gSiteKey: "6LeNrmkUAAAAABgukhlggvfs6F445h7kD7V2v0Iu",
-        gResp: ""
+        gresp: ""
       },
       rules: {
         name: [
@@ -192,7 +191,12 @@ export default {
           }
         ],
         desc: [
-          { required: true, message: "请简单填写您的项目介绍", trigger: "blur" }
+          {
+            required: true,
+            message: "请简单填写您的项目介绍",
+            trigger: "blur"
+          },
+          { min: 10, message: "最少写10个字" }
         ]
       }
     };
@@ -213,15 +217,21 @@ export default {
     onSubmit() {
       let gp = document.getElementById("g-recaptcha-response");
       if (gp) {
-        this.callForm.gResp = gp.value;
+        this.callForm.gresp = gp.value;
       }
-      if (this.callForm.gResp.length < 10) {
+      if (this.callForm.gresp.length < 10) {
         this.$alert("您忘记通过机器人验证了哦", "甩掉机器人", {
           confirmButtonText: "确定"
         });
         return false;
       }
-      let nb = this;
+      const nb = this;
+      const loading = this.$loading({
+        lock: true,
+        text: "正在提交",
+        spinner: "el-icon-loading",
+        background: "rgba(255, 255, 255, 0.7)"
+      });
       this.$refs["form"].validate(valid => {
         if (valid) {
           var xhr = new XMLHttpRequest();
@@ -233,6 +243,7 @@ export default {
           );
           xhr.onreadystatechange = function() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
+              loading.close();
               if (xhr.status == 200) {
                 // 请求结束后,在此处写处理代码
                 nb.$alert(
@@ -243,9 +254,13 @@ export default {
                   }
                 );
               } else {
-                nb.$alert("网络出现问题咯，请您再试一次", "呜呜，出错啦", {
-                  confirmButtonText: "确定"
-                });
+                nb.$alert(
+                  "出现问题咯「" + xhr.responseText + "」，请您再试一次",
+                  "呜呜，出错啦",
+                  {
+                    confirmButtonText: "确定"
+                  }
+                );
               }
             }
           };
