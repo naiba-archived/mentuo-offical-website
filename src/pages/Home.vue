@@ -11,9 +11,9 @@
               快速联系
             </el-button>
           </el-menu-item>
-          <el-menu-item index="1">
+          <el-menu-item index="1" class="hidden-xs-only">
             <el-button type="primary" plain>
-              <a href="https://stats.mentuo.com">状态</a>
+              <a href="https://stats.mentuo.com" target="_black">状态</a>
             </el-button>
           </el-menu-item>
         </el-menu>
