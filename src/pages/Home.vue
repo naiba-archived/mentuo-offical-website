@@ -140,9 +140,11 @@
               </el-col>
               &nbsp;&nbsp;元
             </el-form-item>
-            <el-col :sm="{span:16,offset:5}" :xs="{span:20,offset:1}" style="padding-bottom:15px">
-              <div class="g-recaptcha" data-sitekey="6LeNrmkUAAAAABgukhlggvfs6F445h7kD7V2v0Iu"></div>
-            </el-col>
+            <el-row type="flex" class="row-bg" justify="center">
+              <el-col :sm="16" :xs="20" style="padding-bottom:15px">
+                <div class="g-recaptcha" data-sitekey="6LeNrmkUAAAAABgukhlggvfs6F445h7kD7V2v0Iu"></div>
+              </el-col>
+            </el-row>
             <el-form-item size="large">
               <el-button type="primary" @click="onSubmit">立即创建</el-button>
             </el-form-item>
