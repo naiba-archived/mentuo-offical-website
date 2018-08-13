@@ -16,7 +16,7 @@ Vue.use(VueAnalytics, {
     id: 'UA-111315498-11',
     router,
     autoTracking: {
-        pageviewOnLoad: false
+        pageviewOnLoad: true
     }
 })
 
