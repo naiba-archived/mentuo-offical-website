@@ -1,5 +1,135 @@
-@base: #ccc;
+@base-font-size: 16px;
+@base-border-color: #eee;
+body {
+    width: 100%;
+    font-family: "PingFang SC", Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", STXihei, STHeiti, Heiti, SimSun, sans-serif;
+    color: #333333;
+    font-size: @base-font-size;
+    line-height: 1.5;
+}
 
-h2 {
-    color: @base;
+a {
+    text-decoration: none;
+}
+
+.advantage {
+    img {
+        height: 72px;
+    }
+    h2 {
+        font-size: 20px;
+        padding: 0;
+        display: inline-block;
+        line-height: 72px;
+        margin: 6px 12px;
+        vertical-align: top;
+    }
+    ul {
+        padding-left: 14px;
+        li {
+            list-style: none;
+            position: relative;
+            padding: .5em 0;
+            font-size: 16px;
+            strong {
+                color: #35AFFB;
+            }
+        }
+        li::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -14px;
+            display: block;
+            width: 4px;
+            height: 4px;
+            margin-top: -2px;
+            border-radius: 100%;
+            background-color: #35AFFB;
+        }
+    }
+}
+
+.el-header {
+    .el-submenu__title {
+        font-size: @base-font-size;
+    }
+    .el-menu-item:first-of-type {
+        padding-left: 0;
+    }
+    .el-menu-item:last-of-type {
+        float: right;
+    }
+    .el-menu-item {
+        font-size: @base-font-size;
+    }
+    border-bottom: none;
+}
+
+.hero {
+    border-top: 1px solid @base-border-color;
+    .title {
+        font-size: 36px;
+        font-weight: bold;
+    }
+    .subtitle {
+        font-size: 20px;
+        color: #444;
+    }
+}
+
+.plain-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.section {
+    padding: 20px;
+}
+
+.section:first-of-type {
+    padding-bottom: 56px;
+}
+
+.section:nth-of-type(odd) {
+    background-color: #F6F9FC
+}
+
+.section .el-form-item__label {
+    font-size: @base-font-size
+}
+
+.section .el-textarea__inner {
+    font-size: @base-font-size
+}
+
+.section .el-input__inner {
+    font-size: @base-font-size
+}
+
+.case-item {
+    .el-card__body {
+        padding: 0px;
+    }
+    img {
+        width: 100%;
+        height: 250px;
+    }
+    .case-info {
+        padding: 14px;
+        .case-title {
+            line-height: 28px;
+            font-weight: bold;
+        }
+        .case-meta {
+            margin-top: 6px;
+            font-size: 14px;
+            color: #666;
+        }
+    }
+}
+
+.copyright {
+    font-size: 12px;
+    color: #aaa;
 }
