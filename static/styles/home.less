@@ -54,8 +54,10 @@ a {
     .el-submenu__title {
         font-size: @base-font-size;
     }
-    .el-menu-item:first-of-type {
-        padding-left: 0;
+    @media(min-width:768px) {
+        .el-menu-item:first-of-type {
+            padding-left: 0;
+        }
     }
     .el-menu-item:nth-child(2) {
         float: right;
@@ -68,6 +70,12 @@ a {
         font-size: @base-font-size;
     }
     border-bottom: none;
+}
+
+@media(max-width:768px) {
+    .el-header {
+        padding: 0px;
+    }
 }
 
 .hero {
