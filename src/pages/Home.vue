@@ -140,9 +140,9 @@
               </el-col>
               &nbsp;&nbsp;元
             </el-form-item>
-            <el-form-item label="甩掉机器人">
+            <el-col :sm="{span:16,offset:5}" :xs="{span:20,offset:1}" style="padding-bottom:15px">
               <div class="g-recaptcha" data-sitekey="6LeNrmkUAAAAABgukhlggvfs6F445h7kD7V2v0Iu"></div>
-            </el-form-item>
+            </el-col>
             <el-form-item size="large">
               <el-button type="primary" @click="onSubmit">立即创建</el-button>
             </el-form-item>
