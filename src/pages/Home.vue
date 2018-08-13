@@ -2,13 +2,18 @@
   <el-container>
     <el-header>
       <el-col :sm="{span:20,offset:2}">
-        <el-menu default-active="1" mode="horizontal">
+        <el-menu mode="horizontal">
           <el-menu-item index="0">
             <a href="/"><img height="30px" src="../../static/images/logo.png" alt="门拓科技"></a>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="2">
             <el-button @click="scrollTo('content')" type="primary">
               快速联系
+            </el-button>
+          </el-menu-item>
+          <el-menu-item index="1">
+            <el-button type="primary" plain>
+              <a href="https://stats.mentuo.com">状态</a>
             </el-button>
           </el-menu-item>
         </el-menu>
