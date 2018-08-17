@@ -41,8 +41,8 @@
             <ul>
               <li>快速开发，从零到一
               </li>
-              <li>让您的点子
-                <strong>变成现实</strong>
+              <li>让您的想法
+                <strong>照亮现实</strong>
               </li>
             </ul>
           </el-col>
@@ -61,10 +61,10 @@
             <img src="../../static/images/tech.png">
             <h2>技术领先</h2>
             <ul>
-              <li>扎实的技术基础，
-                <strong>领先的软硬件方案</strong>
+              <li>技术扎实，
+                <strong>解决方案方案领先</strong>
               </li>
-              <li>特殊用途功能定制</li>
+              <li>个性化定制服务</li>
             </ul>
           </el-col>
         </el-row>
@@ -83,7 +83,7 @@
                   <i class="el-icon-time">
                     <span>2018年7月31日</span>
                     <i class="el-icon-location-outline">
-                      <span>上海凌总</span>
+                      <span>上海净一斋食品</span>
                 </p>
               </div>
             </el-card>
@@ -97,7 +97,7 @@
                   <i class="el-icon-time">
                     <span>2018年3月30日</span>
                     <i class="el-icon-location-outline">
-                      <span>上海凌总</span>
+                      <span>上海净一斋食品</span>
                 </p>
               </div>
             </el-card>
@@ -111,7 +111,7 @@
                   <i class="el-icon-time">
                     <span>2018月1日16日</span>
                     <i class="el-icon-location-outline">
-                      <span>北京刘总</span>
+                      <span>北京门拓科技</span>
                 </p>
               </div>
             </el-card>
@@ -157,7 +157,7 @@
     </div>
     <div class="section">
       <el-col :sm="{span:20,offset:2}" class="copyright">
-        门拓科技 Mentuo Tech Co.Ltd | 门庭若市，拓土开疆
+        北京门拓科技 Mentuo Tech Co.Ltd | 门庭若市，拓土开疆
       </el-col>
     </div>
   </el-container>
@@ -188,7 +188,7 @@ export default {
           }
         ],
         offer: [
-          { type: "number", message: "预算必须是数字" },
+          { type: "number", message: "请填写您的预算" },
           { required: true, message: "请填写您的预算" },
           {
             type: "number",
@@ -226,21 +226,28 @@ export default {
       if (gp) {
         this.callForm.gresp = gp.value;
       }
-      if (this.callForm.gresp.length < 10) {
-        this.$alert("您忘记通过机器人验证了哦", "甩掉机器人", {
-          confirmButtonText: "确定"
-        });
-        return false;
-      }
       const nb = this;
-      const loading = this.$loading({
-        lock: true,
-        text: "正在提交",
-        spinner: "el-icon-loading",
-        background: "rgba(255, 255, 255, 0.7)"
-      });
       this.$refs["form"].validate(valid => {
         if (valid) {
+          // 验证码验证
+          if (nb.callForm.gresp.length < 10) {
+            nb.$alert(
+              "您忘记通过机器人验证了哦，按钮上方会加载一个验证码，如未看到请刷新重试",
+              "机器人验证",
+              {
+                confirmButtonText: "确定"
+              }
+            );
+            return false;
+          }
+          // 加载界面
+          const loading = this.$loading({
+            lock: true,
+            text: "正在提交",
+            spinner: "el-icon-loading",
+            background: "rgba(255, 255, 255, 0.7)"
+          });
+          // 发送请求
           var xhr = new XMLHttpRequest();
           xhr.open("POST", "/submit.php", true);
           //发送合适的请求头信息
