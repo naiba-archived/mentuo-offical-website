@@ -1,5 +1,4 @@
-// import 'babel-polyfill'
-// import Vue from 'vue'
+import 'babel-polyfill'
 import Vue from 'vue/dist/vue.esm.js'
 import App from './App.vue'
 import router from './router'
