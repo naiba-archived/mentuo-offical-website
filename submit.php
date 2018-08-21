@@ -52,7 +52,7 @@ function verifyGoogle($ip, $resp)
     $success = json_decode($output);
     if (!$success || !isset($success->success)||!$success->success) {
         http_response_code(403);
-        die('验证码验证失败');
+        die('请重新通过机器人验证');
     }
 }
 
@@ -65,18 +65,12 @@ $ip = get_client_ip();
 
 if (strlen($name) < 2||strlen($phone)!=11||strlen($desc)<10||$offer<10000||strlen($resp)<10) {
     http_response_code(403);
-    die('请通过正常方式提交');
+    die('请通过门拓科技官网进行提交');
 }
 
 verifyGoogle($ip,$resp);
-$title = '又有客户上门啦';
+$title = '门拓科技客户上门';
 $data = <<<DATA
-# 门拓科技
-
-又有客户上门啦，抓紧去赚钱买房娶媳妇啦。
-
-### 客户信息
-
 - 姓名：$name
 - 手机：$phone
 - 预算：**$offer**元
