@@ -22,59 +22,19 @@
     <div class="section hero">
       <el-col :sm="{span:20,offset:2}">
         <p class="title">
-          从零到一的快速软件产品开发服务
+          众多行业领袖的选择，您的不二之选
         </p>
         <p class="subtitle">
-          「门拓科技」为中小创业者打造线上系统，为创业者提供网站、App、高级定制开发等技术解决方案。
+          数千家中小创业者择门拓进行产品开发，门拓是您启动线上业务的最佳选择。
         </p>
         <el-button @click="scrollTo('content')" type="primary" icon="el-icon-service" plain>快速联系</el-button>
-        <el-button @click="scrollTo('example')" plain icon="el-icon-goods">近期项目</el-button>
-      </el-col>
-    </div>
-    <div class="section">
-      <el-col :sm="{span:20,offset:2}">
-        <p class="plain-title">为什么选择门拓</p>
-        <el-row :gutter="20">
-          <el-col :sm="8" class="advantage">
-            <img src="../../static/images/cheap.png">
-            <h2>创造价值</h2>
-            <ul>
-              <li>快速开发，从零到一
-              </li>
-              <li>让您的想法
-                <strong>照亮现实</strong>
-              </li>
-            </ul>
-          </el-col>
-          <el-col :sm="8" class="advantage">
-            <img src="../../static/images/pro.png">
-            <h2>服务专业</h2>
-            <ul>
-              <li>独立的品牌形象，杜绝千篇一律
-              </li>
-              <li>原创系统
-                <strong>保障知识产权</strong>
-              </li>
-            </ul>
-          </el-col>
-          <el-col :sm="8" class="advantage">
-            <img src="../../static/images/tech.png">
-            <h2>技术领先</h2>
-            <ul>
-              <li>技术扎实，
-                <strong>解决方案方案领先</strong>
-              </li>
-              <li>个性化定制服务</li>
-            </ul>
-          </el-col>
-        </el-row>
       </el-col>
     </div>
     <div class="section" id="example">
       <el-col :sm="{span:20,offset:2}">
-        <p class="plain-title">近期案例</p>
+        <p class="plain-title">往期案例</p>
         <el-row :gutter="20">
-          <el-col v-for="item in cases" :sm="8">
+          <el-col v-for="(item,index) in cases" :sm="8" :class="index>2?'second-line-item':''">
             <el-card class="case-item" shadow="hover">
               <img :src="item.image">
               <div class="case-info">
@@ -88,9 +48,6 @@
               </div>
             </el-card>
           </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <a href="#/cases" class="more">查看更多服务案例</a>
         </el-row>
       </el-col>
     </div>
@@ -143,7 +100,7 @@ import data from "../data";
 export default {
   data() {
     return {
-      cases: data.cases.slice(0, 3),
+      cases: data.cases,
       callForm: {
         offer: null,
         name: "",
