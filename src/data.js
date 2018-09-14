@@ -8,7 +8,7 @@ export default {
         },
         {
             image: '/static/upload/panel.png',
-            title: '奶爸域名，米表',
+            title: '域名展销平台',
             time: '2018年8月31日',
             boss: '北京 · 门拓科技',
         },
