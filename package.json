@@ -17,6 +17,7 @@
     "vue": "^2.5.17",
     "vue-analytics": "^5.12.3",
     "vue-hot-reload-api": "^2.3.0",
+    "vue-recaptcha": "^1.1.1",
     "vue-router": "^3.0.1"
   },
   "repository": {
