@@ -1,30 +1,28 @@
 <template>
-    <el-form ref="form" :rules="rules" :model="callForm" label-width="100px" size="large" :status-icon="true">
-        <el-form-item label="姓名" prop="name">
-            <el-input v-model="callForm.name" placeholder="我们应该怎么称呼您"></el-input>
-        </el-form-item>
-        <el-form-item label="手机" prop="phone">
-            <el-input v-model="callForm.phone" placeholder="请填写您的联系电话"></el-input>
-        </el-form-item>
+  <el-form ref="form" :rules="rules" :model="callForm" label-width="100px" size="large" :status-icon="true">
+    <el-form-item label="姓名" prop="name">
+      <el-input v-model="callForm.name" placeholder="我们应该怎么称呼您"></el-input>
+    </el-form-item>
+    <el-form-item label="手机" prop="phone">
+      <el-input v-model="callForm.phone" placeholder="请填写您的联系电话"></el-input>
+    </el-form-item>
 
-        <el-form-item label="项目介绍" prop="desc">
-            <el-input v-model="callForm.desc" type="textarea" placeholder="请简单介绍一下您的项目想法"></el-input>
-        </el-form-item>
-        <el-form-item label="项目预算" prop="offer">
-            <el-col :span="20" style="padding-left:0">
-                <el-input v-model.number="callForm.offer" type="number" placeholder="预算不低于 1 万元"></el-input>
-            </el-col>
-            &nbsp;&nbsp;元
-        </el-form-item>
-        <el-row type="flex" class="row-bg" justify="center">
-            <el-col :sm="16" :xs="20" style="padding-bottom:15px">
-                <vue-recaptcha :sitekey="siteKey"></vue-recaptcha>
-            </el-col>
-        </el-row>
-        <el-form-item size="large">
-            <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        </el-form-item>
-    </el-form>
+    <el-form-item label="项目介绍" prop="desc">
+      <el-input v-model="callForm.desc" type="textarea" placeholder="请简单介绍一下您的项目想法"></el-input>
+    </el-form-item>
+    <el-form-item label="项目预算" prop="offer">
+      <el-col :span="20" style="padding-left:0">
+        <el-input v-model.number="callForm.offer" type="number" placeholder="预算不低于 1 万元"></el-input>
+      </el-col>
+      &nbsp;&nbsp;元
+    </el-form-item>
+    <el-form-item label="验证码" prop="gresp">
+      <vue-recaptcha @verify="recaptchaVerify" ref="recaptcha" :sitekey="siteKey"></vue-recaptcha>
+    </el-form-item>
+    <el-form-item size="large">
+      <el-button type="primary" @click="onSubmit">立即创建</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
@@ -43,6 +41,9 @@ export default {
         }
       return str.join("&");
     },
+    recaptchaVerify(resp) {
+      this.callForm.gresp = resp;
+    },
     onSubmit() {
       let gp = document.getElementById("g-recaptcha-response");
       if (gp) {
@@ -51,17 +52,6 @@ export default {
       const nb = this;
       this.$refs["form"].validate(valid => {
         if (valid) {
-          // 验证码验证
-          if (nb.callForm.gresp.length < 10) {
-            nb.$alert(
-              "您忘记通过机器人验证了哦，按钮上方会加载一个验证码，如未看到请刷新重试",
-              "机器人验证",
-              {
-                confirmButtonText: "确定"
-              }
-            );
-            return false;
-          }
           // 加载界面
           const loading = this.$loading({
             lock: true,
@@ -80,6 +70,8 @@ export default {
           xhr.onreadystatechange = function() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
               loading.close();
+              nb.$refs.recaptcha.reset();
+              nb.callForm.gresp = "";
               if (xhr.status == 200) {
                 // 请求结束后,在此处写处理代码
                 nb.$alert(
@@ -147,6 +139,14 @@ export default {
             trigger: "blur"
           },
           { min: 10, message: "最少写10个字" }
+        ],
+        gresp: [
+          {
+            required: true,
+            message: "请通过机器人验证",
+            trigger: "blur"
+          },
+          { min: 10, message: "没通过机器人验证" }
         ]
       }
     };
