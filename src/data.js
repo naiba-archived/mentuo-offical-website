@@ -7,12 +7,6 @@ export default {
             boss: '北京 · 门拓科技',
         },
         {
-            image: '/static/upload/panel.png',
-            title: '域名展销平台',
-            time: '2018年8月31日',
-            boss: '北京 · 门拓科技',
-        },
-        {
             image: '/static/upload/mark.png',
             title: '马克云书签，云端收藏夹',
             time: '2018年7月31日',
